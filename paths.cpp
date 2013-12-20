@@ -63,6 +63,8 @@ void unmake_move(int a[], int k, int n)
 /*	What are possible elements of the next slot in the path
 */
 
+int start_vertex;
+
 void construct_candidates(int a[], int k, int n, int c[], int *ncandidates)
 {
 	int i;				/* counters */
@@ -74,7 +76,7 @@ void construct_candidates(int a[], int k, int n, int c[], int *ncandidates)
 	for (i=1; i<k; i++) in_sol[ a[i] ] = true;
 
 	if (k==1) {			/* always start from vertex 1 */
-		c[0] = 1;
+		c[0] = start_vertex;
 		*ncandidates = 1;
 	}
 	else	{
@@ -91,7 +93,7 @@ void construct_candidates(int a[], int k, int n, int c[], int *ncandidates)
 	}
 }
 
-
+#include <iostream>
 
 main()
 {
@@ -99,12 +101,15 @@ main()
 	int i;				/* counter */
 
         read_graph(&g,false);
-        print_graph(&g);
+        //print_graph(&g);
 
-	for (i=1; i<=g.nvertices; i++) {
-		printf("\nPaths from 1 to %d:\n",i);
-		backtrack(a,0,i);
-	}
-
+    for ( int c2 = 1; c2 <= 15; c2++ ) {
+    	for ( int c1 = 0; c1 <= c2-1; c1++ ) {
+    		//std::cout << c2 << " " << c1 << "\n";
+    		//std::cout << "Paths from " << c2 << " to " << c1 << ":\n";
+    		start_vertex = c2;
+    		backtrack(a,0,c1);
+    	}
+    }
 }
 
