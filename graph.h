@@ -54,5 +54,6 @@ void print_graph(graph *g);
 void print_graph_dot(graph *g);
 void print_graph_dot_2x2(graph *g);
 void print_graph_dot_3x3(graph *g);
+void print_graph_dot_5x5(graph *g);
 
 
