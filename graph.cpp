@@ -130,3 +130,82 @@ void print_graph(graph *g)
 	}
 }
 
+class Couple
+{
+public:
+	int a,b;
+	Couple(int aa,int bb):a(aa),b(bb){}
+	bool operator==(const Couple& rhs ) const
+	{
+		return (a==rhs.a && b==rhs.b) || (a==rhs.b && b==rhs.a);
+	}
+};
+
+#include <vector>
+#include <algorithm>
+
+void print_graph_dot(graph *g)
+{
+	int i;				/* counter */
+	edgenode *p;			/* temporary pointer */
+
+char preamble[]=R"(
+graph
+{
+13 [pos = "0,0!"]
+
+14 [pos = "1,0!"]
+
+15 [pos = "2,0!"]
+
+16 [pos = "3,0!"]
+
+9 [pos = "0,1!"]
+
+10 [pos = "1,1!"]
+
+11 [pos = "2,1!"]
+
+12 [pos = "3,1!"]
+
+5 [pos = "0,2!"]
+
+6 [pos = "1,2!"]
+
+7 [pos = "2,2!"]
+
+8 [pos = "3,2!"]
+
+1 [pos = "0,3!"]
+
+2 [pos = "1,3!"]
+
+3 [pos = "2,3!"]
+
+4 [pos = "3,3!"])";
+
+printf("%s\n\n", preamble );
+
+
+std::vector<Couple> couples;
+
+	for (i=1; i<=g->nvertices; i++) {
+		p = g->edges[i];
+		while (p != NULL) {
+			//printf("%d -- %d\n",i,p->y);
+			Couple c(i,p->y);
+			if ( std::find(couples.begin(),couples.end(),c) == couples.end() ) {
+				couples.push_back(c);
+			}
+			p = p->next;
+		}
+		//printf("\n");
+	}
+
+	for ( size_t i = 0; i < couples.size(); i++ ) {
+		printf("%d -- %d\n",couples[i].a,couples[i].b);
+	}
+
+	printf("}\n");
+}
+

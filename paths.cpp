@@ -101,8 +101,9 @@ main()
 	int i;				/* counter */
 
         read_graph(&g,false);
-        //print_graph(&g);
+        print_graph_dot(&g);
 
+/*
     for ( int c2 = 1; c2 <= 15; c2++ ) {
     	for ( int c1 = 0; c1 <= c2-1; c1++ ) {
     		//std::cout << c2 << " " << c1 << "\n";
@@ -111,5 +112,6 @@ main()
     		backtrack(a,0,c1);
     	}
     }
+    */
 }
 
