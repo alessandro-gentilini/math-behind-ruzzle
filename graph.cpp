@@ -114,19 +114,20 @@ void delete_edge(graph *g, int x, int y, bool directed)
 	printf("Warning: deletion(%d,%d) not found in g.\n",x,y);
 }
 
+
 void print_graph(graph *g)
 {
 	int i;				/* counter */
 	edgenode *p;			/* temporary pointer */
 
 	for (i=1; i<=g->nvertices; i++) {
-		printf("%d: ",i);
+		fprintf(stderr,"%d: ",i);
 		p = g->edges[i];
 		while (p != NULL) {
-			printf(" %d",p->y);
+			fprintf(stderr," %d",p->y);
 			p = p->next;
 		}
-		printf("\n");
+		fprintf(stderr,"\n");
 	}
 }
 
@@ -144,7 +145,7 @@ public:
 #include <vector>
 #include <algorithm>
 
-void print_graph_dot(graph *g)
+void print_graph_dot_4x4(graph *g)
 {
 	int i;				/* counter */
 	edgenode *p;			/* temporary pointer */
@@ -183,6 +184,48 @@ graph
 3 [pos = "2,3!"]
 
 4 [pos = "3,3!"])";
+
+printf("%s\n\n", preamble );
+
+
+std::vector<Couple> couples;
+
+	for (i=1; i<=g->nvertices; i++) {
+		p = g->edges[i];
+		while (p != NULL) {
+			//printf("%d -- %d\n",i,p->y);
+			Couple c(i,p->y);
+			if ( std::find(couples.begin(),couples.end(),c) == couples.end() ) {
+				couples.push_back(c);
+			}
+			p = p->next;
+		}
+		//printf("\n");
+	}
+
+	for ( size_t i = 0; i < couples.size(); i++ ) {
+		printf("%d -- %d\n",couples[i].a,couples[i].b);
+	}
+
+	printf("}\n");
+}
+
+void print_graph_dot_2x2(graph *g)
+{
+	int i;				/* counter */
+	edgenode *p;			/* temporary pointer */
+
+char preamble[]=R"(
+graph
+{
+3 [pos = "0,2!"]
+
+4 [pos = "1,2!"]
+
+1 [pos = "0,3!"]
+
+2 [pos = "1,3!"])";
+
 
 printf("%s\n\n", preamble );
 

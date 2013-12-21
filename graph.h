@@ -52,5 +52,6 @@ typedef struct {
 void read_graph(graph *g, bool directed);
 void print_graph(graph *g);
 void print_graph_dot(graph *g);
+void print_graph_dot_2x2(graph *g);
 
 

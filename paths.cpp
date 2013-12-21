@@ -97,20 +97,22 @@ void construct_candidates(int a[], int k, int n, int c[], int *ncandidates)
 
 main()
 {
-	int a[NMAX];			/* solution vector */
-	int i;				/* counter */
+    int a[NMAX];            /* solution vector */
+    int i;              /* counter */
 
-        read_graph(&g,false);
-        print_graph_dot(&g);
+    read_graph(&g, false);
+    print_graph_dot_2x2(&g);
 
 /*
-    for ( int c2 = 1; c2 <= 15; c2++ ) {
-    	for ( int c1 = 0; c1 <= c2-1; c1++ ) {
-    		//std::cout << c2 << " " << c1 << "\n";
-    		//std::cout << "Paths from " << c2 << " to " << c1 << ":\n";
-    		start_vertex = c2;
-    		backtrack(a,0,c1);
-    	}
+    for ( int c2 = 1; c2 <= 16; c2++ )
+    {
+        for ( int c1 = 1; c1 <= 16; c1++ )
+        {
+            //std::cout << c2 << " " << c1 << "\n";
+            //std::cout << "Paths from " << c2 << " to " << c1 << ":\n";
+            start_vertex = c2;
+            backtrack(a, 0, c1);
+        }
     }
     */
 }
