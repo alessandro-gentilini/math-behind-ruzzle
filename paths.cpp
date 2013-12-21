@@ -101,7 +101,7 @@ main()
     int i;              /* counter */
 
     read_graph(&g, false);
-    print_graph_dot_2x2(&g);
+    print_graph_dot_3x3(&g);
 
 /*
     for ( int c2 = 1; c2 <= 16; c2++ )

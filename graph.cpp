@@ -252,3 +252,59 @@ std::vector<Couple> couples;
 	printf("}\n");
 }
 
+void print_graph_dot_3x3(graph *g)
+{
+	int i;				/* counter */
+	edgenode *p;			/* temporary pointer */
+
+char preamble[]=R"(
+graph
+{
+7 [pos = "0,0!"]
+
+8 [pos = "1,0!"]
+
+9 [pos = "2,0!"]
+
+
+
+4 [pos = "0,1!"]
+
+5 [pos = "1,1!"]
+
+6 [pos = "2,1!"]
+
+
+
+1 [pos = "0,2!"]
+
+2 [pos = "1,2!"]
+
+3 [pos = "2,2!"])";
+
+
+
+printf("%s\n\n", preamble );
+
+
+std::vector<Couple> couples;
+
+	for (i=1; i<=g->nvertices; i++) {
+		p = g->edges[i];
+		while (p != NULL) {
+			//printf("%d -- %d\n",i,p->y);
+			Couple c(i,p->y);
+			if ( std::find(couples.begin(),couples.end(),c) == couples.end() ) {
+				couples.push_back(c);
+			}
+			p = p->next;
+		}
+		//printf("\n");
+	}
+
+	for ( size_t i = 0; i < couples.size(); i++ ) {
+		printf("%d -- %d\n",couples[i].a,couples[i].b);
+	}
+
+	printf("}\n");
+}
